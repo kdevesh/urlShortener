@@ -2,7 +2,6 @@ package com.devesh.urlShortener.models;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
@@ -15,7 +14,6 @@ import java.util.Objects;
 @Builder
 @Getter
 @Setter
-@NoArgsConstructor
 @PrimaryKeyClass
 public class UserKey implements Serializable {
     private static final long serialVersionUID = 1L;
