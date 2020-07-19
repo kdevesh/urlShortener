@@ -1,6 +1,7 @@
 package com.devesh.urlShortener.exceptionhandler;
 
 import com.devesh.urlShortener.exceptions.DuplicateException;
+import com.devesh.urlShortener.exceptions.InvalidJwtException;
 import com.devesh.urlShortener.exceptions.SaveException;
 import com.devesh.urlShortener.response.Response;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
                 .message(duplicateException.getMessage())
                 .code(HttpStatus.CONFLICT.value()).build();
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler(InvalidJwtException.class)
+    public ResponseEntity<Response> handleException(InvalidJwtException duplicateException) {
+        Response response = Response.builder()
+                .message(duplicateException.getMessage())
+                .code(HttpStatus.INTERNAL_SERVER_ERROR.value()).build();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
