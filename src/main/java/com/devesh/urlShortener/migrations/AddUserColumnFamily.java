@@ -30,6 +30,7 @@ public class AddUserColumnFamily extends SchemaMigration {
                 .addClusteringColumn("firstName", text())
                 .addClusteringColumn("lastName", text())
                 .addColumn("createdOn", timestamp())
+                .addColumn("userpassword",text())
                 .ifNotExists().withOptions()
                 .clusteringOrder("firstName", SchemaBuilder.Direction.DESC)
                 .clusteringOrder("lastName", SchemaBuilder.Direction.DESC)
