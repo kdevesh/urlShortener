@@ -10,4 +10,5 @@ import lombok.*;
 public class Response {
     private int code;
     private String message;
+    private String token;
 }
