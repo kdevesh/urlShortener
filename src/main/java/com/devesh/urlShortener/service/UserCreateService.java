@@ -7,6 +7,7 @@ import com.devesh.urlShortener.models.UserDTO;
 import com.devesh.urlShortener.models.UserKey;
 import com.devesh.urlShortener.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,8 @@ import java.time.ZoneOffset;
 public class UserCreateService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void createUser(UserDTO userDTO) {
         UserKey userKey = UserKey.builder()
@@ -25,7 +28,8 @@ public class UserCreateService {
                 .lastName(userDTO.getLastName()).build();
         User user = User.builder()
                 .userKey(userKey)
-                .createdOn(LocalDateTime.now()).build();
+                .createdOn(LocalDateTime.now())
+                .password(bCryptPasswordEncoder.encode(userDTO.getPassword())).build();
 
         boolean exists = userRepository.existsByUserKeyEmail(userKey.getEmail());
         if (exists)
