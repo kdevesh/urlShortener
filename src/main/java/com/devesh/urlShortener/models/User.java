@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 public class User {
     @PrimaryKey
     private UserKey userKey;
+    @Column("userpassword")
+    private String password;
     @Column("createdon")
     private LocalDateTime createdOn;
 }

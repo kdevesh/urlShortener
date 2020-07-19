@@ -15,4 +15,6 @@ public class UserDTO {
     private String firstName;
     @JsonProperty(value = "lastName")
     private String lastName;
+    @JsonProperty(value = "password")
+    private String password;
 }
